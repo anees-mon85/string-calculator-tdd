@@ -11,3 +11,7 @@ def test_single_number_returns_number():
 
 def test_two_numbers_return_sum():
     assert add("1,2") == 3
+
+
+def test_multiple_numbers_return_sum():
+    assert add("1,2,3") == 6
