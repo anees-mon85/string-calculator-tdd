@@ -39,3 +39,7 @@ def test_multiple_negative_numbers_throw_exception():
 def test_ignore_numbers_greater_than_1000():
     assert add("2,1001") == 2
     assert add("1000,2") == 1002
+
+
+def test_delimiters_of_any_length():
+    assert add("//[***]\n1***2***3") == 6
