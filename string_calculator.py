@@ -3,12 +3,15 @@ import re
 
 def extract_numbers(numbers: str) -> list[int]:
     if numbers.startswith("//"):
-        match = re.match(r"//\[(.+)\]\n(.*)", numbers)
+        match = re.match(r"//(\[.*?\])\n(.*)", numbers)
         if match:
-            delimiter, numbers = match.groups()
+            delimiters, numbers = match.groups()
+            delimiters = re.findall(r"\[(.*?)\]", delimiters)
+            for delimiter in delimiters:
+                numbers = numbers.replace(delimiter, ",")
         else:
             delimiter, numbers = re.match(r"//(.+)\n(.*)", numbers).groups()
-        numbers = numbers.replace(delimiter, ",")
+            numbers = numbers.replace(delimiter, ",")
     numbers = numbers.replace("\n", ",")
     return [int(n) for n in numbers.split(",")]
 
