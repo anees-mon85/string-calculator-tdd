@@ -8,4 +8,8 @@ def add(numbers: str) -> int:
         delimiter, numbers = re.match(r"//(.+)\n(.*)", numbers).groups()
         numbers = numbers.replace(delimiter, ",")
     numbers = numbers.replace("\n", ",")
-    return sum(map(int, numbers.split(",")))
+    nums = list(map(int, numbers.split(",")))
+    negatives = [n for n in nums if n < 0]
+    if negatives:
+        raise ValueError(f"negative numbers not allowed: {','.join(map(str, negatives))}")
+    return sum(nums)
