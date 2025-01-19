@@ -15,3 +15,7 @@ def test_two_numbers_return_sum():
 
 def test_multiple_numbers_return_sum():
     assert add("1,2,3") == 6
+
+
+def test_newlines_between_numbers():
+    assert add("1\n2,3") == 6
