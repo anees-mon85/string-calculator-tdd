@@ -43,3 +43,7 @@ def test_ignore_numbers_greater_than_1000():
 
 def test_delimiters_of_any_length():
     assert add("//[***]\n1***2***3") == 6
+
+
+def test_multiple_delimiters():
+    assert add("//[*][%]\n1*2%3") == 6
