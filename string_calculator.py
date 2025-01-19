@@ -5,7 +5,11 @@ def add(numbers: str) -> int:
     if not numbers:
         return 0
     if numbers.startswith("//"):
-        delimiter, numbers = re.match(r"//(.+)\n(.*)", numbers).groups()
+        match = re.match(r"//\[(.+)\]\n(.*)", numbers)
+        if match:
+            delimiter, numbers = match.groups()
+        else:
+            delimiter, numbers = re.match(r"//(.+)\n(.*)", numbers).groups()
         numbers = numbers.replace(delimiter, ",")
     numbers = numbers.replace("\n", ",")
     nums = list(map(int, numbers.split(",")))
